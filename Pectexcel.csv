@@ -1,0 +1,162 @@
+﻿name,age,sex,side,surgedelay,follow,outpect,injuryloc,outpect_cat
+Abbas Ali,34,0,1,10,7,1,2,0
+Akash Yadav,21,0,1,3,30,3,1,1
+Almel Shahabuddin,40,0,0,3,14,1,1,0
+Alpesh Parmar,24,0,0,4,25,4,1,1
+Amarinder Singh,23,0,0,3,18,4,1,1
+Amit Bade,26,0,1,14,28,2,2,0
+Amitabh Singh,26,0,0,7,22,2,1,0
+Amjad Ali,30,0,0,4,27,3,1,1
+Amol Mane,26,0,1,11,22,3,1,1
+Amole Wable,23,0,1,4,17,3,1,1
+Anand Survase,27,0,1,1,11,3,1,1
+Anandji Nigam,28,0,1,1,33,3,1,1
+Anant Jadhav,21,0,0,2,32,4,2,1
+Anil Bamhane,26,0,0,4,9,2,1,0
+Anil Patil,31,0,1,4,16,3,1,1
+Anil Sawant,30,0,0,4,4,0,1,0
+Ankush,31,0,0,1,35,3,1,1
+Arman Mulani,4,0,0,4,11,2,1,0
+Arti Naik,23,1,0,1,26,3,1,1
+Arun Dube,23,0,1,4,26,4,1,1
+Arun Gaikwad,53,0,0,4,27,4,1,1
+Ashish Bhatt,27,0,0,5,14,4,1,1
+Ashraf Hanif,21,0,0,7,45,1,2,0
+Ashwini Sonavane,12,1,1,7,15,3,1,1
+Basavaraj Devakki,25,0,0,3,19,1,1,0
+Bhagwan Shinde,35,0,0,3,24,3,2,1
+Bhautik Godhani,22,0,1,3,23,3,2,1
+Bhavesh Solanki,26,0,0,6,25,3,2,1
+Bhuvan Parmar,30,0,1,9,6,1,1,0
+Binoy Mohata,44,0,0,2,25,2,1,0
+Bipin Patel,28,0,0,5,32,4,1,1
+Bittu Pande,26,0,0,3,13,2,1,0
+Dahan Dahan Saad Alla,22,0,1,6,26,4,1,1
+Damodar Bhoyar,40,0,1,6,21,2,1,0
+Datta Wadageri,34,0,0,4,24,2,1,0
+Deepak Patil,22,0,1,2,28,4,1,1
+Deepak Pise,43,0,0,2,41,3,1,1
+Deokar,39,0,0,6,18,2,1,0
+Devendra Ranawat,27,0,0,7,38,3,1,1
+Devendra Renose,25,0,1,4,17,3,1,1
+Dilip Rana,17,0,0,3,24,3,1,1
+Emile Giddings,18,0,1,7,31,3,1,1
+G.K.Khedkar,40,0,0,7,23,2,1,0
+Ganesh Sanap,25,0,0,5,41,4,1,1
+Gaurav Patel,18,0,0,2,31,4,1,1
+Ghanshyam Thorat,28,0,0,3,23,4,1,1
+Ghulam mulla,50,0,0,5,17,2,1,0
+Gundu Salgare,48,0,1,2,24,3,1,1
+H R PolicePatil,34,0,0,2,74,3,1,1
+Hardeep Singh,58,0,0,8,10,2,1,0
+Hardik Vanjara,22,0,1,12,12,2,1,0
+Hasmukh Gajera,52,0,0,3,31,3,1,1
+Hirjibhai Maisuri ,38,0,0,4,13,3,1,1
+Ishita Shah,17,1,0,3,31,4,1,1
+Jai Wankhede,24,0,0,2,12,3,1,1
+Jaimuddin Shaikh,43,0,0,2,40,3,1,1
+Jay Giri,19,0,0,7,5,2,1,0
+Jeevan Pawar,28,0,0,3,26,4,1,1
+Jitendra Paswan,25,0,0,3,48,3,1,1
+K.C.Khandelwal,59,0,0,5,20,0,1,0
+K.S.Lalge,53,0,0,3,28,4,1,1
+Kalavatiben,33,1,0,3,34,3,1,1
+Kanchanbhai Rohit,37,0,0,3,37,4,1,1
+Kokilaben patel,54,1,0,3,44,3,1,1
+Kuldeep Dhende,23,0,0,5,16,3,2,1
+Kunal Hadkar,27,0,1,2,31,2,2,0
+Laith Mubarak,24,0,0,1,51,4,1,1
+Mahendra Patel,40,0,0,3,16,2,1,0
+Mahesh Lohar,32,0,1,3,23,3,1,1
+Majar Singh,21,0,0,4,10,3,1,1
+Malaram Kamaram,35,0,0,2,36,3,1,1
+Malhari Raut,20,0,1,4,27,2,2,0
+Manjulaben Panchal,48,1,0,2,26,2,2,0
+Manpreet Singh,23,0,1,7,15,1,1,0
+Mehul Kasturiya,18,0,0,12,38,1,1,0
+Milan Patel,35,0,0,10,25,0,1,0
+Miss Geeta,17,1,0,2,24,4,1,1
+Mohd Yasin ,18,0,1,3,24,2,1,0
+Mukund Chate,28,0,0,3,18,1,1,0
+Murlidhar Sontakke,59,0,1,2,13,3,1,1
+Musumba Mbumba,23,0,0,5,15,3,1,1
+Nikhil Shinde,24,0,0,5,19,2,1,0
+Nilesh Kumawat,23,0,1,4,22,3,1,1
+Nilesh Manjrekar,41,0,1,2,23,2,1,0
+Nilesh Rawade,30,0,0,7,24,1,1,0
+Ninad Ranade,23,0,0,2,83,3,2,1
+Nishith Shetty,29,0,0,2,20,2,1,0
+Nitin Kute,29,0,0,2,12,2,1,0
+Omnath Chinchansur,32,0,0,3,24,3,2,1
+Padmanabhan,26,0,0,2,22,2,2,0
+Parag Palshikar,24,0,1,2,34,4,1,1
+Prakash Borule,35,0,0,6,19,2,2,0
+Prakash Ranodaria,40,0,0,4,11,2,2,0
+Prashant Shewale,34,0,0,1,17,3,1,1
+Pratibha Pawar,24,1,0,2,25,4,1,1
+Pritesh Ahir,22,0,0,5,30,2,1,0
+Pushpaben Desai,53,1,1,8,17,3,2,1
+Raghavendra Deshpande,30,0,1,4,33,4,1,1
+Raghuveer Singh,30,0,0,15,26,2,2,0
+Rahul Dwivedi,20,0,0,2,36,2,1,0
+Rahul More,30,0,0,8,19,3,1,1
+Rajendra kadam,39,0,0,4,26,0,2,0
+Rajendra Solanki,21,0,1,4,24,1,1,0
+Rajesh Kumar2,32,0,0,8,16,1,2,0
+Rajiv Khushalani,30,0,1,1,27,3,2,1
+Rajvir Singh,23,0,0,3,16,3,1,1
+Ramdhan Pawar,55,0,1,2,21,2,1,0
+Ramesh Kanoje,24,0,0,4,43,4,1,1
+Rameshwar Gopale,26,0,0,2,17,3,1,1
+Rameshwar Rajaram,18,0,1,9,28,3,1,1
+RamMurat Saroj,27,0,0,2,16,2,2,0
+Ramnath Shinde,50,0,1,3,12,2,1,0
+Raolsaheb Dharandale,45,0,0,8,26,2,2,0
+Revansidh,27,0,0,3,16,2,1,0
+Rohit Kanani,27,0,0,2,40,3,2,1
+Rohullih Khowja,18,0,1,1,19,4,1,1
+Ronak Barman,14,0,1,2,26,3,1,1
+Sachin Chakve,26,0,1,1,42,3,2,1
+Sagar Haridas,30,0,1,2,18,2,1,0
+Sajid Shaikh,27,0,0,8,40,3,2,1
+Samadhan Bagal,35,0,1,6,27,1,2,0
+Sameer Khan,21,0,1,13,17,2,1,0
+Sandip Mankar ,28,0,0,4,21,4,3,1
+Santosh Hugge,31,0,0,1,4,1,2,0
+Santosh Langhe,33,0,1,3,39,2,1,0
+Santosh Nirbhuvane,26,0,1,4,44,3,1,1
+Santosh Pawar,34,0,1,3,22,2,2,0
+Satish Bavdhane,23,0,1,6,22,2,2,0
+Satish Kadam,31,0,0,3,18,2,1,0
+Satish Mohod,19,0,0,2,21,4,1,1
+Satish Pasalkar,24,0,0,14,24,2,2,0
+Savitaben Gajera,45,1,0,11,7,1,1,0
+Shankar Singh,24,0,0,4,8,1,1,0
+Shankar Thakore,18,0,1,8,20,4,1,1
+Sharad Yadav,22,0,0,3,66,4,1,1
+Shardaben Devada,45,1,0,8,10,1,1,0
+Sheikhmohd Ibrahim,27,0,0,4,30,4,2,1
+Shekhar Navale,28,0,0,3,9,2,1,0
+Shravan Soni,24,0,1,8,29,3,1,1
+Sohit Pathan,25,0,0,7,39,3,1,1
+Someshwar Waghchaure,24,0,1,10,12,2,1,0
+Sukhwinder Singh Sohal,20,0,0,6,47,3,1,1
+Sunil Arate,18,0,1,5,25,3,1,1
+Sunil Khande,23,0,0,2,35,4,1,1
+Sunil Sharma,25,0,0,3,15,3,1,1
+Supriya Shewale,22,1,1,3,69,4,1,1
+Suresh Kirade,22,0,1,4,18,4,1,1
+Suresh Patel,53,0,0,8,29,1,1,0
+Swapnil Durve,27,0,0,7,53,2,2,0
+Udaybhan Singh,40,0,1,19,53,3,2,1
+Vetal Mahanwar,22,0,0,3,50,4,1,1
+Vijay Gote,32,0,0,2,50,3,1,1
+Vijay Pardeshi,31,0,1,2,31,2,2,0
+Vijay Shelke,28,0,1,4,25,3,2,1
+Vinayak Barkade,40,0,0,14,6,1,1,0
+Vipul Dhodi,19,0,1,4,27,3,1,1
+Vitej Khaire,21,0,0,2,8,2,1,0
+Vitthal Patil,33,0,1,5,18,2,1,0
+Vitthal Vyavahare,42,0,1,2,15,2,1,0
+Yogesh Borse,28,0,1,3,36,4,1,1
+Yogesh Vare,27,0,0,4,24,2,1,0
