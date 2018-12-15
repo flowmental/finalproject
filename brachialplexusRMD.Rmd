@@ -1,0 +1,177 @@
+---
+title: "Outcomes of intercostal to pectoralis nerve transfer after brachial plexus injury"
+output: html_document
+---
+
+#Overview and Motivation:
+
+Brachial plexus injuries, usually occuring as a result of motor vehicle accidents, frequently lead to weakness in the pectoralis major muscle. Reconstructive nerve transfers typically focus on restoring elbow flexion. However, restoring  function to the pectoralis can muscle provide important improvements to quality of life. The intercostal nerve transfer technique involves disconnecting a nerve that runs underneath one of the ribs and attaching it to the plexus that supplies the medial and lateral pectoral nerves, which innervates the pectoralis major muscle
+
+Initial Questions: The goal of our study was to identify clinical predictors of pectoralis muscle strength recovery with a cohort of patients with brachial plexus injury and pectoralis muscle weakness who underwent intercostal nerve transfer to the pectoralis.
+
+Data: The data is from a prospectively collected clinical database collected between 1995-2017 by an experienced brachial plexus surgeon in Pune, India. 
+
+The outcome variable, outpect_cat  coded 0 for bad outcome, and 1 for good outcome (strong motor movement). This was dichotomized from outpect (0=no movement, 1=some muscle activity seen, 2= movement of limb but not against gravity, 3=antigravity, 4= can provide resistance to confrontation). Other variables include the patient's age, sex, side of the injury (0=right, 1=left), time interval between the injury and surgery, time until last recorded follow up in months, Injury location (1=complete nerve root avulsion, 2=incomplete avulsion). 
+
+Adding packages:
+```{r, message=FALSE, warning=FALSE}
+library(psych)
+library (dplyr)
+library (ggplot2)
+library(vcd)
+library(caret)
+library(e1071)
+library (purrr)
+library (DAAG)
+      
+```
+
+
+
+First, we will import the database into R from excel, which has already been cleaned. 
+
+```{r}
+ 
+library(readxl)
+Pectexcel <- read_excel("~/Downloads/Pectexcel.xlsx")
+pect<-Pectexcel
+pect
+
+```
+
+Because we are not comparing anything, we can start out with some descriptive characteristics of the patients in this dataset. Here ae some 2x2 tables of the categorical variables with the outcome variable, outpect_cat.
+
+```{r}
+sexoutpect<-table(pect$sex,pect$outpect_cat)
+sideoutpect<- table(pect$side, pect$outpect_cat)
+injuryoutpect<- table(pect$injuryloc, pect$outpect_cat)
+
+
+sexoutpect
+assocstats(sexoutpect)
+
+sideoutpect
+assocstats(sideoutpect)
+
+injuryoutpect
+assocstats(injuryoutpect)
+```
+
+Some summary descriptors. 
+
+```{r}
+describe(pect)
+```
+
+Here, we are testing the normality of the data with shapiro-wilks tests. 
+
+```{r}
+
+
+shapiro.test(Pectexcel$age)
+shapiro.test(Pectexcel$surgedelay)
+shapiro.test(Pectexcel$follow)
+```
+We have 161 patients, we can see that the continuous variables of age, delay between injury and surgery and follow up times are not normally distributed. We can see this further with histograms and q-q plots.  
+
+```{r}
+ggplot(data=Pectexcel,aes(x=age)) + geom_histogram(binwidth=2, col="green", fill="green", alpha=.2) + scale_fill_gradient("Count", low="green", high="red")
+
+ggplot(data=Pectexcel,aes(x=surgedelay)) + geom_histogram(binwidth=2, col="blue", fill="blue", alpha=.2) + scale_fill_gradient("Count", low="green", high="red")
+
+ggplot(data=Pectexcel,aes(x=follow)) + geom_histogram(binwidth=2, col="red", fill="red", alpha=.2) + scale_fill_gradient("Count", low="green", high="red")
+
+ggplot(data=Pectexcel,aes(sample=age)) + geom_qq () + stat_qq_line()
+ggplot(data=Pectexcel,aes(sample=surgedelay)) + geom_qq () + stat_qq_line()
+ggplot(data=Pectexcel,aes(sample=follow)) + geom_qq () + stat_qq_line()
+
+```
+
+We can do an unadjusted comparison of the two groups based on age and surgical delay and follow up to see if there is a significant difference. 
+
+```{r}
+
+wilcox.test(pect$age~pect$outpect_cat)
+wilcox.test(pect$surgedelay~pect$outpect_cat)
+wilcox.test(pect$follow~pect$outpect_cat)
+```
+We can see that all 3 are significant. We can visualize this with boxplots. 
+```{r}
+ggplot(pect, aes(outpect_cat,age))+
+  geom_boxplot(fill="green", colour="green",alpha=.2, outlier.colour = "red", outlier.shape = 1) + xlab("Poor vs. Good outcome")+ ylab("Age (years)")
+
+ggplot(pect, aes(outpect_cat,surgedelay))+
+  geom_boxplot(fill="blue", colour="blue",alpha=.2, outlier.colour = "red", outlier.shape = 1)+ xlab("Poor vs. Good outcome")+ ylab("Delay before surgery (months)")
+
+ggplot(pect, aes(outpect_cat,follow))+
+  geom_boxplot(fill="red", colour="red",alpha=.2, outlier.colour = "red", outlier.shape = 1) +
+   xlab("Poor vs. Good outcome")+ ylab("Follow up time (months)")
+
+```
+
+Now we progress to the logistic regression, including age, sex, side, surgical delay, and follow up time in the model.  
+```{r}
+xtabs (~outpect_cat + sex, data = pect)
+pect$outpect_cat <- factor(pect$outpect_cat)
+pect$sex <- factor(pect$sex)
+pect$side <- factor(pect$side)
+logit <- glm(outpect_cat~ age + sex + side + surgedelay+ follow, data = pect, family = "binomial")
+summary(logit)
+exp(cbind(OR=coef(logit),confint(logit)))
+
+```
+
+We can see that age, delay between injury and surgery and follow up time are significant predictors, adjusting for the rest of the model. 
+
+
+```{r}
+ggplot(pect, aes(outpect, age)) +
+  geom_point() + geom_jitter(width = 0.05) + 
+  geom_smooth(method = lm, formula = y ~ splines::bs(x, 3), se = FALSE) + xlab("Motor strength outcome categories")+ ylab("Age (years)")
+
+```
+
+Here we plot the probability of being in the good outcome group vs the bad outcome group as a function of the significant continuous variables: age, delay before surgery, and follow up time. 
+```{r}
+
+
+ggplot(logit, aes(x=surgedelay, y=as.numeric(outpect_cat)-1)) + geom_point() + geom_jitter(height = 0.05)+ geom_smooth(method="glm", method.args = list(family=binomial), se=FALSE, fullrange=T) + xlab("Delay before surgery (months)")+ ylab("Probability of a good outcome")
+
+ggplot(logit, aes(x=age, y=as.numeric(outpect_cat)-1)) + geom_point() + geom_jitter(height = 0.05) + geom_smooth(method="glm", method.args = list(family=binomial), se=FALSE, fullrange=T)+ xlab("Age (years)")+ ylab("Probability of a good outcome")
+
+ggplot(logit, aes(x=follow, y=as.numeric(outpect_cat)-1)) + geom_point() + geom_jitter(height = 0.05) + geom_smooth(method="glm", method.args = list(family=binomial), se=FALSE, fullrange=T)+ xlab("Follow up time (months)")+ ylab("Probability of a good outcome")
+
+```
+There is a clear positive relationship for the first 2 and a negative relationship for the second. 
+
+
+in a scatterplot, we can see that those with a good outcome are clustered around a younger age and a shorter delay before surgery. 
+
+```{r}
+
+pect%>% ggplot(aes(age, surgedelay, color = outpect_cat)) +
+  geom_point()
+
+```
+
+The accuracy of our dataset compared to empiric evidence is below. 
+
+```{r}
+
+library(caret)
+fit_glm <- glm(outpect_cat ~ age + surgedelay + follow + injuryloc + sex + side, data=pect, family="binomial")
+p_hat_logistic <- predict(fit_glm, pect)
+y_hat_logistic <- factor(ifelse(p_hat_logistic > 0.5, 1, 0))
+confusionMatrix(data = y_hat_logistic, reference = pect$outpect_cat)$overall[1]
+
+```
+
+10-fold Cross validation of our data:
+
+```{r}
+
+CVbinary(logit, rand =NULL, nfolds =10,print.details=TRUE)
+```
+This reveals an internal accuracy estimate of about 0.714. 
+
+This is much more of a causal inference question than a predictive question, as there are many more factors that could reasonably contribute to a good outcome after the surgery. But here we see that a controllable factor, namely the time before surgical exploration has an impact on the potential outcome of the patient, adjusting for age and follow up time. 
