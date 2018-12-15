@@ -5,6 +5,7 @@ output: html_document
 Mark Attiah
 Introduction to Data Science
 BST 260
+Data accessible at https://github.com/flowmental/finalproject
 
 
 #Overview and Motivation:
@@ -80,6 +81,8 @@ shapiro.test(Pectexcel$follow)
 We have 161 patients, we can see that the continuous variables of age, delay between injury and surgery and follow up times are not normally distributed. We can see this further with histograms and q-q plots.  
 
 ```{r}
+pect$outpect_cat <- as.factor(pect$outpect_cat)
+
 ggplot(data=Pectexcel,aes(x=age)) + geom_histogram(binwidth=2, col="green", fill="green", alpha=.2) + scale_fill_gradient("Count", low="green", high="red")
 
 ggplot(data=Pectexcel,aes(x=surgedelay)) + geom_histogram(binwidth=2, col="blue", fill="blue", alpha=.2) + scale_fill_gradient("Count", low="green", high="red")
@@ -102,6 +105,7 @@ wilcox.test(pect$follow~pect$outpect_cat)
 ```
 We can see that all 3 are significant. We can visualize this with boxplots. 
 ```{r}
+pect$outpect_cat <- as.factor(pect$outpect_cat)
 ggplot(pect, aes(outpect_cat,age))+
   geom_boxplot(fill="green", colour="green",alpha=.2, outlier.colour = "red", outlier.shape = 1) + xlab("Poor vs. Good outcome")+ ylab("Age (years)")
 
