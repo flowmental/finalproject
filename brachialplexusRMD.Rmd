@@ -2,6 +2,10 @@
 title: "Outcomes of intercostal to pectoralis nerve transfer after brachial plexus injury"
 output: html_document
 ---
+Mark Attiah
+Introduction to Data Science
+BST 260
+
 
 #Overview and Motivation:
 
@@ -23,6 +27,7 @@ library(caret)
 library(e1071)
 library (purrr)
 library (DAAG)
+library(pROC)
       
 ```
 
@@ -123,11 +128,20 @@ exp(cbind(OR=coef(logit),confint(logit)))
 
 We can see that age, delay between injury and surgery and follow up time are significant predictors, adjusting for the rest of the model. 
 
+We can plot the smoothed relationship between undichotomized outcome categories below to ilustrate this:
 
 ```{r}
 ggplot(pect, aes(outpect, age)) +
   geom_point() + geom_jitter(width = 0.05) + 
   geom_smooth(method = lm, formula = y ~ splines::bs(x, 3), se = FALSE) + xlab("Motor strength outcome categories")+ ylab("Age (years)")
+
+ggplot(pect, aes(outpect, surgedelay)) +
+  geom_point() + geom_jitter(width = 0.05) + 
+  geom_smooth(method = lm, formula = y ~ splines::bs(x, 3), se = FALSE) + xlab("Motor strength outcome categories")+ ylab("Delay before surgery (months)")
+
+ggplot(pect, aes(outpect, follow)) +
+  geom_point() + geom_jitter(width = 0.05) + 
+  geom_smooth(method = lm, formula = y ~ splines::bs(x, 3), se = FALSE) + xlab("Motor strength outcome categories")+ ylab("Follow up time (months)")
 
 ```
 
@@ -145,13 +159,26 @@ ggplot(logit, aes(x=follow, y=as.numeric(outpect_cat)-1)) + geom_point() + geom_
 There is a clear positive relationship for the first 2 and a negative relationship for the second. 
 
 
-in a scatterplot, we can see that those with a good outcome are clustered around a younger age and a shorter delay before surgery. 
+Focusing on the significant preoperative variables in our model (age and delay before surgery) in a scatterplot, we can see that those with a good outcome are clustered around a younger age and a shorter delay before surgery. We can see this in both the dichotomoized and raw outcome variables. 
 
 ```{r}
 
-pect%>% ggplot(aes(age, surgedelay, color = outpect_cat)) +
-  geom_point()
+pect$outpect_cat <- as.factor(pect$outpect_cat)
+pect$outpect <- as.factor(pect$outpect)
+pect %>%ggplot(aes(age, surgedelay, color = outpect_cat)) +
+  geom_point(aes(color = outpect_cat, shape = outpect_cat))+ 
+ stat_ellipse(aes(color = outpect_cat), type = "t")+
+   scale_color_manual(values = c("red", "blue"))+
+                        xlab("Age (years)")+ 
+                        ylab("Delay before surgery (months)")
 
+
+pect %>%ggplot(aes(age, surgedelay, color = outpect)) +
+  geom_point(aes(color = outpect, shape = outpect))+ 
+ stat_ellipse(aes(color = outpect), type = "t")+
+   scale_color_manual(values = c("red", "orange", "purple", "blue", "green"))+
+                        xlab("Age (years)")+ 
+                        ylab("Delay before surgery (months)")
 ```
 
 The accuracy of our dataset compared to empiric evidence is below. 
@@ -172,6 +199,6 @@ confusionMatrix(data = y_hat_logistic, reference = pect$outpect_cat)$overall[1]
 
 CVbinary(logit, rand =NULL, nfolds =10,print.details=TRUE)
 ```
-This reveals an internal accuracy estimate of about 0.714. 
+This reveals an accuracy estimate of about 0.714. 
 
 This is much more of a causal inference question than a predictive question, as there are many more factors that could reasonably contribute to a good outcome after the surgery. But here we see that a controllable factor, namely the time before surgical exploration has an impact on the potential outcome of the patient, adjusting for age and follow up time. 
